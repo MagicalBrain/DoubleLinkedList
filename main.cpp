@@ -9,6 +9,8 @@ int main()
 	//test_output();
 	//test_mirrorcreat();
 
-	test_func17();
+	//test_func17();
+	test_func20();
+
 	return 0;
 }

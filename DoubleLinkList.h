@@ -10,6 +10,7 @@ using namespace std;
 typedef struct DLNodes
 {
 	ElemType data;
+	ElemType freq;	//只有func20中用到该数据域，其他函数（题目）没有用到。
 	struct DLNodes* left, * right;
 } DLNodes, * DLinkedList;
 
@@ -39,7 +40,7 @@ XorPointer XorP(XorPointer p, XorPointer q)
 
 //基本操作：
 /*
-* 1.1 双链表的初试化
+* 1.1 双链表的初始化
 */
 int DLinkedListInit(DLinkedList& L)
 {
@@ -49,13 +50,14 @@ int DLinkedListInit(DLinkedList& L)
 		return 0;
 
 	L->right = NULL;
-	L->left = L;
+	L->left = NULL;
+	//L->freq = 0;
 
 	return 1;
 }
 
 /*
-* 1.2  循环双链表的初试化
+* 1.2  循环双链表的初始化
 */
 int CircleDLinkedListInit(DLinkedList& L)
 {
@@ -158,15 +160,29 @@ void DLinkedInput(DLinkedList& L) {
 	a = CreatRand(0);
 	int length = a[0];
 	DLinkedList q = L;
+
+
+
 	for (int i = length; i > 0; --i)
 	{
 		DLNodes* p = (DLinkedList)malloc(sizeof(DLNodes));
+		p->freq = 0;
 		p->data = a[i];
-		p->right = q->right;
-		q->right->left = p;
-		p->left = q;
-		q->right = p;
-		
+		if (i == length)
+		{
+			p->right = q->right;
+			q->right = p;
+			q->right->left = p;
+			p->left = q;
+			
+		}
+		else
+		{
+			p->right = q->right;
+			q->right->left = p;
+			p->left = q;
+			q->right = p;
+		}
 	}
 }
 
@@ -204,7 +220,7 @@ void CircleDLinkedInput(DLinkedList& L) {
 
 
 /*
-* 循环双链表的输入函数
+* 对称的循环双链表的输入函数
 */
 void CircleDLinkedInputMirror(DLinkedList& L) {
 	/*参数:
@@ -229,3 +245,5 @@ void CircleDLinkedInputMirror(DLinkedList& L) {
 	}
 
 }
+
+

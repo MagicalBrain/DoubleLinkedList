@@ -55,3 +55,60 @@ int test_func17()
 	
 	return 0;
 }
+
+//20
+
+/*
+* 20 双链表的freq输出函数
+*/
+int DLinkedFreqOutput(DLinkedList L) {
+	/*参数:
+	tou:
+	1:初始化成带头结点的
+	0：~不带头节点的
+	*/
+	if (L->right != NULL)
+	{
+		DLinkedList p = L->right;
+		while (p->right!=NULL)
+		{
+			cout << p->freq << " ,";
+			p = p->right;
+		}
+		cout << endl;
+		return 1;
+	}
+	cout << "输出失败，表为空!" << endl;
+	return 0;
+}
+
+
+int test_func20()
+{
+	DLinkedList L;
+	int n[3];
+
+	DLinkedListInit(L);
+
+	DLinkedInput(L);
+
+	DLinkedOutput(L);
+
+	
+
+	
+	cout << "输入键值：" << endl;
+	cin >> n[0];
+	Locate(L, n[0]);
+
+	cout << "输入键值：" << endl;
+	cin >> n[0];
+	Locate(L, n[0]);
+	
+	cout << "输入键值：" << endl;
+	cin >> n[0];
+	Locate(L, n[0]);
+	
+	DLinkedFreqOutput(L);
+	return 0;
+}
