@@ -1,12 +1,14 @@
 #include <iostream>
 #include "DoubleLinkList.h"
+#include "TestFunction.h"
 
 using namespace std;
 
 int main()
 {
-	DLinkedList L;
-	L = (DLinkedList)malloc(sizeof(DLNodes));
-	DLinkedListInit(L);
+	//test_output();
+	//test_mirrorcreat();
+
+	test_func17();
 	return 0;
 }

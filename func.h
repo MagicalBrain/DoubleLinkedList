@@ -10,16 +10,30 @@ int func17(DLNodes* L)
 */
 {
 	DLNodes* p1, * p2;
+	int num = 0;
 
-	if (L->next != L)
+	if (L->right != L)
 	{
-		p1 = L->next;
-		p2 = L->next;
+		p1 = L->right;
+		p2 = L->left;
 
-		while (true)
+		while (p1->data == p2->data && p1 != L)
 		{
+			p1 = p1->right;
 
+			p2 = p2->left;
+
+			num++;
 		}
+		cout << num << endl;
+		if (p1 == L)
+		{
+			cout << "是对称的！" << endl;
+		}
+		else
+			cout << "不是对称的！" << endl;
+
+		return 1;
 	}
 
 	return 0;

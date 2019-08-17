@@ -43,6 +43,189 @@ XorPointer XorP(XorPointer p, XorPointer q)
 */
 int DLinkedListInit(DLinkedList& L)
 {
-	
+	L = (DLinkedList)malloc(sizeof(DLNodes));
+
+	if (L == NULL)
+		return 0;
+
+	L->right = NULL;
+	L->left = L;
+
+	return 1;
+}
+
+/*
+* 1.2  循环双链表的初试化
+*/
+int CircleDLinkedListInit(DLinkedList& L)
+{
+	L = (DLinkedList)malloc(sizeof(DLNodes));
+
+	if (L == NULL)
+		return 0;
+
+	L->right = L;
+	L->left = L;
+
+	return 1;
+}
+
+
+/*
+* 2.1 双链表的输出函数
+*/
+int DLinkedOutput(DLinkedList L) {
+	/*参数:
+	tou:
+	1:初始化成带头结点的
+	0：~不带头节点的
+	*/
+	if (L->right != NULL)
+	{
+		DLinkedList p = L->right;
+		while (p)
+		{
+			cout << p->data << " ,";
+			p = p->right;
+		}
+		cout << endl;
+		return 1;
+	}
+	cout << "输出失败，表为空!" << endl;
 	return 0;
+}
+
+/*
+* 2.2 循环双链表的输出函数
+*/
+int CircleDLinkedOutput(DLinkedList L) {
+	/*参数:
+	tou:
+	1:初始化成带头结点的
+	0：~不带头节点的
+	*/
+	if (L->right != L)
+	{
+		DLinkedList p = L->right;
+		while (p != L)
+		{
+			cout << p->data << " ,";
+			p = p->right;
+		}
+		cout << endl;
+		return 1;
+	}
+	cout << "输出失败，表为空!" << endl;
+	return 0;
+}
+
+
+/*
+* 2.2 循环双链表的输出函数
+*/
+int CircleDLinkedOutputLeft(DLinkedList L) {
+	/*参数:
+	tou:
+	1:初始化成带头结点的
+	0：~不带头节点的
+	*/
+	if (L->left != L)
+	{
+		DLinkedList p = L->left;
+		while (p != L)
+		{
+			cout << p->data << " ,";
+			p = p->left;
+		}
+		cout << endl;
+		return 1;
+	}
+	cout << "输出失败，表为空!" << endl;
+	return 0;
+}
+
+
+/*
+* 双链表的输入函数
+*/
+void DLinkedInput(DLinkedList& L) {
+	/*参数:
+	tou:
+	1:初始化成带头结点的
+	0：~不带头节点的
+	*/
+	int* a;
+	a = CreatRand(0);
+	int length = a[0];
+	DLinkedList q = L;
+	for (int i = length; i > 0; --i)
+	{
+		DLNodes* p = (DLinkedList)malloc(sizeof(DLNodes));
+		p->data = a[i];
+		p->right = q->right;
+		q->right->left = p;
+		p->left = q;
+		q->right = p;
+		
+	}
+}
+
+
+/*
+* 循环双链表的输入函数
+*/
+void CircleDLinkedInput(DLinkedList& L) {
+	/*参数:
+	tou:
+	1:初始化成带头结点的
+	0：~不带头节点的
+	*/
+	int* a;
+	a = CreatRand(0);
+	int length = a[0];
+	DLinkedList q = L;
+	DLNodes* p;
+
+	for (int i = length; i > 0; --i)
+	{
+		p = (DLinkedList)malloc(sizeof(DLNodes));
+		p->data = a[i];
+		p->right = q->right;
+		q->right->left = p;
+		p->left = q;
+		q->right = p;
+
+		/*
+		if (i == length)
+			L->left = p;
+		*/
+	}	
+}
+
+
+/*
+* 循环双链表的输入函数
+*/
+void CircleDLinkedInputMirror(DLinkedList& L) {
+	/*参数:
+	tou:
+	1:初始化成带头结点的
+	0：~不带头节点的
+	*/
+	int* a;
+	a = CreatMirrorRand();
+	int length = a[0];
+	DLinkedList q = L;
+	DLNodes* p;
+
+	for (int i = length; i > 0; --i)
+	{
+		p = (DLinkedList)malloc(sizeof(DLNodes));
+		p->data = a[i];
+		p->right = q->right;
+		q->right->left = p;
+		p->left = q;
+		q->right = p;
+	}
+
 }

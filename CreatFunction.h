@@ -180,3 +180,50 @@ x:1，有序；0，无序。
 
 	return p;
 }
+
+
+//生成对称的随机数列函数
+int* CreatMirrorRand()
+/*
+x:1，有序；0，无序。
+输入数字n，生成n个随机元素的数组
+*/
+{
+	int* p;
+	cout << "输入随机数的个数" << endl;
+	int n, len, tmp,m;
+	cin >> n;
+	cout << "输入随机数的大小范围：" << endl;
+	cin >> len;
+
+	p = (int*)malloc((n + 1) * sizeof(int));
+	p[0] = n;
+
+	cout << endl << "生成的随机数：" << endl;
+	srand((unsigned int)time(0));
+	for (int i = 1; i <= (n+1)/2; i++)
+	{
+		int re = rand();
+		p[i] = re % len;
+		cout << p[i] << " ";
+	}
+	cout << endl;
+
+	//m = (n/2 + 1);
+	m = 1;
+	for (int i = n; i >1; i--)
+	{
+		p[i] = p[m];
+		m++;
+		cout << p[i] << " ";
+	}
+	cout << endl;
+
+	for (int i = 1; i <= p[0]; i++)
+	{
+		cout << p[i] << " ";
+	}
+	cout << endl;
+
+	return p;
+}
