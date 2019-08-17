@@ -41,8 +41,8 @@ XorPointer XorP(XorPointer p, XorPointer q)
 /*
 * 1.1 Ë«Á´±íµÄ³õÊÔ»¯
 */
-int DLinkedListInit(DLinkedList L)
+int DLinkedListInit(DLinkedList& L)
 {
-	cout << "?" << endl;
+	
 	return 0;
 }
